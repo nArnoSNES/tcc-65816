@@ -1,0 +1,18 @@
+language: c
+
+before_script:
+- ./configure --enable-cross
+
+script: make 816-tcc
+
+before_deploy:
+- zip -9ry 816-tcc.zip 816-tcc 816-opt.py
+
+deploy:
+  provider: releases
+  api-key:
+  - secure: "kv6+vWVH+loq42gxP2NeL3aa6uPxRP2LO9ve9ClldwJfhLfI6AjhCQ6qAYzR7vAONLnKbOKqpA84NNzpqNRIcpeFPkvdLAwA/8Y5LXOhw+qDqJyFm0Ff3EPZHvu6mGHUUB5g1/VksXqLpBXF5ipfA8zX7BnJorufhSJEYrGUc9eaF03ygQEYsMPFWW5pWLnlAhJ4xgZFyqUm3HiJetWaIzmz9hggwuyutFItj5fmWxefee2ZzD7sMvCf49WhbebYocfEN/Bn77vHqFytRON66QJRybrwC5uL/CqEiaCT/XDyU2vDnurHJX8NsQH36zMIN9fA+pQwfZYjuS/LkM8QMOv+FA8uUg/KjbUAi9vyeQn9Sgylh2xHRPf1MQXOxsAvEdfgGIa3MIdjY9mT7pObgA8ssBkWwc/u4p4rZssT1DDD9t+CpivHu7zo7Iw14Fe2FOF5BHQvP99LPKsiO1gWC9tEwKZvogNyoqecVhx+osjSoRrK9hqfgbcL0ZQ2dHBI59TE7DNkEPGiZpgbEa5hI3Y8VUuushs0a1M1xpWrNSXY6jgnYoVbVuF2LfduZmZfAm8gMKMZwid9axyRDsQTpGx9GiskXnxWc1cLx5kR6T8SQnS2Zq7fljOyn3Ivdxni2avq1IgadewX0/EZV+KPerOc+cECn9+HObsY6Du6VVo="
+  file: 816-tcc.zip
+  skip_cleanup: true
+  on:
+    tags: true
